@@ -68,4 +68,53 @@
 		<constructEffect>ConstructMetal</constructEffect>
 	</ThingDef>
 
+	<!-- ========================= Work tables ==========================-->
+
+	<ThingDef ParentName="BuildingBase">
+		<DefName>Table_PowerCellCreation</DefName>
+		<Label>Cell Creation Station</Label>
+		<ThingClass>Building_WorkTable</ThingClass>
+		<Description>A Tabel for Creating Power Cells.</Description>
+		<graphicData>
+			<texPath>MK1Replicator</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,1)</drawSize>
+		</graphicData>
+		<costList>
+			<Components>2</Components>
+			<Steel>100</Steel>
+			<Silver>50</Silver>
+		</costList>
+		<AltitudeLayer>Waist</AltitudeLayer>
+		<Size>(3,1)</Size>
+		<DesignationCategory>Production</DesignationCategory>
+		<Passability>Impassable</Passability>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<surfaceType>Item</surfaceType>
+		<constructEffect>ConstructMetal</constructEffect>
+		<recipes>
+			<li>CREATE_POWERCELL</li>
+		</recipes>
+		<inspectorTabs>
+			<li>ITab_Bills</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>1200</basePowerConsumption>
+				<transmitsPower>true</transmitsPower>
+			</li>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Glower">
+				<glowRadius>6</glowRadius>
+				<glowColor>(217,112,33,0)</glowColor>
+			</li>
+		</comps>
+		<building>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+		</building>
+	</ThingDef>
+	
 </ThingDefs>

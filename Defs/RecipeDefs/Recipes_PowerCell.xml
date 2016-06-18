@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RecipeDefs>
+
+	<!-- Replicate Slag -->
+	<RecipeDef>
+		<defName>CREATE_POWERCELL</defName>
+		<label>Create a PowerCell</label>
+		<description>Create a PowerCell.</description>
+		<jobString>Creating a PowerCell.</jobString>
+		<workAmount>200</workAmount>
+		<workSpeedStat>SmithingSpeed</workSpeedStat>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_MakeStoneBlocks</soundWorking>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Components</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<products>
+			<PowerCellDischarged>1</PowerCellDischarged>
+		</products>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Components</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<workSkill>Crafting</workSkill>
+	</RecipeDef>
+
+</RecipeDefs>

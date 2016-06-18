@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WorkGivers>
+
+	<WorkGiverDef>
+		<defName>DoBillsPowerCell</defName>
+		<giverClass>WorkGiver_DoBill</giverClass>
+		<workType>Crafting</workType>
+		<priorityInType>104</priorityInType>
+		<fixedBillGiverDefs>
+			<li>Table_PowerCellCreation</li>
+		</fixedBillGiverDefs>
+		<verb>create</verb>
+		<gerund>creating</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</WorkGiverDef>
+
+</WorkGivers>
