@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--================== Bases ==================-->
+  
+  <ThingDef Name="ResourceBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <label>unspecified resource</label>
+    <category>Item</category>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>75</stackLimit>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <rotatable>false</rotatable>
+    <pathCost>15</pathCost>
+  </ThingDef>
+
+
+  <!--================== Drugs ==================-->
+
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>PowerCellCharged</defName>
+    <label>Power Cell Charged</label>
+    <description>A Portable device for storing energy. Currently Charged.</description>
+    <graphicData>
+      <texPath>Energy_Cell_Full</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <statBases>
+      <MarketValue>100</MarketValue>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeTags>
+      <li>Exotic</li>
+    </tradeTags>
+  </ThingDef>
+  
+  <ThingDef ParentName="ResourceBase">
+    <defName>PowerCellDischarged</defName>
+    <label>Power Cell Discharged</label>
+    <description>A Portable device for storing energy. Currently Discharged.</description>
+    <graphicData>
+      <texPath>Energy_Cell_Empty</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <statBases>
+      <MarketValue>100</MarketValue>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeTags>
+      <li>Exotic</li>
+    </tradeTags>
+  </ThingDef>
+
+</Defs>
