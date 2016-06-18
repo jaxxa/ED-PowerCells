@@ -41,10 +41,7 @@
 			<Flammability>1.0</Flammability>
 		</statBases>
 		<building>
-			<isMealSource>true</isMealSource>
 			<wantsHopperAdjacent>true</wantsHopperAdjacent>
-			<foodCostPerDispense>6</foodCostPerDispense>
-			<soundDispense>DispensePaste</soundDispense>
 		</building>
 		<comps>
 			<li Class="CompProperties_Power">
@@ -72,7 +69,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<DefName>Table_PowerCellCreation</DefName>
-		<Label>Cell Creation Station</Label>
+		<Label>PowerCell Creation Station</Label>
 		<ThingClass>Building_WorkTable</ThingClass>
 		<Description>A Tabel for Creating Power Cells.</Description>
 		<graphicData>
