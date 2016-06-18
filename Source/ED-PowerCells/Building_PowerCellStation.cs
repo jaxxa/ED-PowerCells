@@ -18,6 +18,7 @@ namespace ED_PowerCells
         private static Texture2D UI_DISCHARGED;
 
         CompPowerTrader m_Power;
+        CompFlickable m_Flick;
 
         const int POWER_RATE_CHARGE = -2000;
         const int POWER_RATE_DISCHARGE = 2000;
@@ -41,68 +42,76 @@ namespace ED_PowerCells
             UI_DISCHARGED = ContentFinder<Texture2D>.Get("Energy_Cell_Empty", true);
 
             this.m_Power = base.GetComp<CompPowerTrader>();
+            this.m_Flick = base.GetComp<CompFlickable>();
         }
 
         public override void TickRare()
         {
             base.TickRare();
 
-            //Charging
-            if (this.m_ChargeMode)
+            if (this.m_Flick.SwitchIsOn)
             {
-                this.m_Power.PowerOutput = Building_PowerCellStation.POWER_RATE_CHARGE;
-
-                if (this.m_Power.PowerOn)
+                //Charging
+                if (this.m_ChargeMode)
                 {
-                    this.m_TicksRemaining -= 1;
+                    this.m_Power.PowerOutput = Building_PowerCellStation.POWER_RATE_CHARGE;
 
-                    //Try Get a new cell if one is finished, ejecting the old one.
-                    if (this.m_TicksRemaining <= 0)
+                    if (this.m_Power.PowerOn)
                     {
-                        if (this.TryGetPowerCell(false))
+                        this.m_TicksRemaining -= 1;
+
+                        //Try Get a new cell if one is finished, ejecting the old one.
+                        if (this.m_TicksRemaining <= 0)
                         {
-                            this.SpawnPowerCell(true);
-                            this.m_TicksRemaining = Building_PowerCellStation.TICKS_TO_CHARGE;
+                            if (this.TryGetPowerCell(false))
+                            {
+                                this.SpawnPowerCell(true);
+                                this.m_TicksRemaining = Building_PowerCellStation.TICKS_TO_CHARGE;
+                            }
+                            else
+                            {
+                                this.m_ErrorMode = Modes.NoCell;
+                            }
                         }
                         else
                         {
-                            this.m_ErrorMode = Modes.NoCell;
+                            this.m_ErrorMode = Modes.Normal;
                         }
                     }
                     else
                     {
+                        this.m_ErrorMode = Modes.Low_Power;
+                    }
+                }
+                else //Discharging
+                {
+                    this.m_TicksRemaining -= 1;
+                    if (this.m_TicksRemaining <= 0)
+                    {
+
+                        if (this.TryGetPowerCell(true))
+                        {
+                            this.SpawnPowerCell(false);
+                            this.m_TicksRemaining = Building_PowerCellStation.TICKS_TO_DISCHARGE;
+                        }
+                    }
+
+                    if (this.m_TicksRemaining > 0)
+                    {
+                        this.m_Power.PowerOutput = Building_PowerCellStation.POWER_RATE_DISCHARGE;
                         this.m_ErrorMode = Modes.Normal;
                     }
-                }
-                else
-                {
-                    this.m_ErrorMode = Modes.Low_Power;
+                    else
+                    {
+                        this.m_Power.PowerOutput = 0;
+                        this.m_ErrorMode = Modes.NoCell;
+                    }
+
                 }
             }
-            else //Discharging
+            else
             {
-                this.m_TicksRemaining -= 1;
-                if (this.m_TicksRemaining <= 0)
-                {
-
-                    if (this.TryGetPowerCell(true))
-                    {
-                        this.SpawnPowerCell(false);
-                        this.m_TicksRemaining = Building_PowerCellStation.TICKS_TO_DISCHARGE;
-                    }
-                }
-
-                if (this.m_TicksRemaining > 0)
-                {
-                    this.m_Power.PowerOutput = Building_PowerCellStation.POWER_RATE_DISCHARGE;
-                    this.m_ErrorMode = Modes.Normal;
-                }
-                else
-                {
-                    this.m_Power.PowerOutput = 0;
-                    this.m_ErrorMode = Modes.NoCell;
-                }
-
+                this.m_ErrorMode = Modes.FlickedOff;
             }
 
         }
@@ -148,6 +157,9 @@ namespace ED_PowerCells
                     case Modes.NoCell:
                         stringBuilder.AppendLine("Charing - No Uncharged Cell.");
                         break;
+                    case Modes.FlickedOff:
+                        stringBuilder.AppendLine("Charing - Flicked Off.");
+                        break;
                 }
             }
             else
@@ -164,6 +176,9 @@ namespace ED_PowerCells
 
                     case Modes.NoCell:
                         stringBuilder.AppendLine("Discharing - No Uncharged Cell.");
+                        break;
+                    case Modes.FlickedOff:
+                        stringBuilder.AppendLine("Discharing - Flicked Off.");
                         break;
                 }
             }
@@ -284,7 +299,7 @@ namespace ED_PowerCells
     }
 
 
-    enum Modes { Normal, Low_Power, NoCell };
+    enum Modes { Normal, Low_Power, NoCell, FlickedOff };
 }
 
 
