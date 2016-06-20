@@ -9,7 +9,7 @@ Adds Power Cell Charging / Discharging.
 Power cells are created at the PowerCell Creation Station from 2 Components.
 
 Power Cells are then Placed Next to a PowerCellStation. This station can be switched between 2 modes, Charging or Discharging.
-Charging mode will take an adjacent Charged Power Cell and turn it into a Discharged Power Cell, while consuming power.
-Discharging mode will take an adjacent Discharged Power Cell and turn it into a Charged Power Cell, while producing power.
+Charging mode will take an adjacent Discharged Power Cell and turn it into a Charged Power Cell, while consuming power.
+Discharging mode will take an adjacent Charged Power Cell and turn it into a Discharged Power Cell, while producing power.
 	</description>
 </ModMetaData>
