@@ -8,8 +8,9 @@ using UnityEngine;
 using RimWorld;
 using Verse;
 
-namespace ED_PowerCells
+namespace EnhancedDevelopment.PowerCells
 {
+    [StaticConstructorOnStartup]
     public class Building_PowerCellStation : Building
     {
 

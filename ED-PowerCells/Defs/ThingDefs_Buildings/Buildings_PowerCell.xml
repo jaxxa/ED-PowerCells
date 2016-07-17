@@ -20,7 +20,7 @@
 		<defName>PowerCellStation</defName>
 		<label>PowerCell Station</label>
 		<description>Charges or discharges PowerCells.</description>
-		<thingClass>ED_PowerCells.Building_PowerCellStation</thingClass>
+		<thingClass>EnhancedDevelopment.PowerCells.Building_PowerCellStation</thingClass>
 		<tickerType>Rare</tickerType>
 		<graphicData>
 			<texPath>PowerCellStation</texPath>
@@ -32,7 +32,7 @@
 				<cornerTR>Damage/Corner</cornerTR>
 			</damageData>
 		</graphicData>
-		<altitudeLayer>BuildingTall</altitudeLayer>
+		<altitudeLayer>Building</altitudeLayer>
 		<passability>Impassable</passability>
 		<fillPercent>1</fillPercent>
 		<statBases>
@@ -55,7 +55,7 @@
 		<size>(3,4)</size>
 		<costList>
 			<Steel>90</Steel>
-			<Components>3</Components>
+			<Component>3</Component>
 		</costList>
 		<socialPropernessMatters>true</socialPropernessMatters>
 		<interactionCellOffset>(0,0,3)</interactionCellOffset>
@@ -78,11 +78,11 @@
 			<drawSize>(3,1)</drawSize>
 		</graphicData>
 		<costList>
-			<Components>2</Components>
+			<Component>2</Component>
 			<Steel>100</Steel>
 			<Silver>50</Silver>
 		</costList>
-		<AltitudeLayer>Waist</AltitudeLayer>
+		<AltitudeLayer>Building</AltitudeLayer>
 		<Size>(3,1)</Size>
 		<DesignationCategory>Production</DesignationCategory>
 		<Passability>Impassable</Passability>
